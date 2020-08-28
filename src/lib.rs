@@ -146,8 +146,28 @@ extern crate bitflags;
 #[cfg(any(target_os = "macos", target_os = "ios"))]
 #[macro_use]
 extern crate objc;
+
 #[cfg(all(target_arch = "wasm32", feature = "std_web"))]
 extern crate std_web as stdweb;
+#[cfg(all(
+    any(
+        target_os = "linux",
+        target_os = "dragonfly",
+        target_os = "freebsd",
+        target_os = "netbsd",
+        target_os = "openbsd"
+    ),
+    not(feature = "x11"),
+    not(feature = "wayland")
+))]
+compile_error!("at least one of the \"x11\"/\"wayland\" features must be enabled");
+
+#[cfg(all(
+    target_arch = "wasm32",
+    not(feature = "web-sys"),
+    not(feature = "stdweb")
+))]
+compile_error!("at least one of the \"web-sys\"/\"stdweb\" features must be enabled");
 
 pub mod dpi;
 #[macro_use]
