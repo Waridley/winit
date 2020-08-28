@@ -1,5 +1,5 @@
 [package]
-name = "winit"
+name = "cart-tmp-winit"
 version = "0.22.2"
 authors = ["The winit contributors", "Pierre Krieger <pierre.krieger1708@gmail.com>"]
 description = "Cross-platform window creation library."
